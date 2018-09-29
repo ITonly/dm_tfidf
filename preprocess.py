@@ -36,7 +36,7 @@ def check_contain_chinese(check_str):
 
 
 if __name__ == "__main__":
-    inputs = open('./data/cnews/cnews_data.txt', 'r', encoding='utf-8')
+    inputs = open('./data/news/news_data.txt', 'r', encoding='utf-8')
     outputs = open('./data/split_words.txt', 'w', encoding='utf-8')
     for line in inputs:
         line_seg = seg_sentence(line)  # 这里的返回值是字符串
