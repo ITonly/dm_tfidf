@@ -55,5 +55,5 @@ def save_file(dir_name):
 
 
 if __name__ == '__main__':
-    save_file('Reduced')
+    save_file('../Reduced')
 

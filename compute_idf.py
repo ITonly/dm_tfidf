@@ -2,26 +2,37 @@
 __author__ = "li shi di"
 
 import math
-
+from collections import Counter
 
 if __name__ == "__main__":
     df_dict = {}
     inputs = open('./data/split_words.txt', 'r', encoding='utf-8')
     count = 0
+    # 数组的查找速度为o(n)，set的查找速度为o(1)。line.split('')
     # 一行一行的处理，而不是把所有的新闻一次全部加载到内存。
+    # for line in inputs:
+    #     count += 1
+    #     counter = {}
+    #     for word in line.split(' '):
+    #         if word.startswith('C'):
+    #             continue
+    #         if word not in counter:
+    #             counter[word] = 1
+    #             if word in df_dict:
+    #                 df_dict[word] += 1
+    #             else:
+    #                 df_dict[word]=1
+    # inputs.close()
+
+    result = []
     for line in inputs:
         count += 1
-        counter = {}
-        for word in line.split(' '):
-            if word.startswith('C'):
-                continue
-            if word not in counter:
-                counter[word] = 1
-                if word in df_dict:
-                    df_dict[word] += 1
-                else:
-                    df_dict[word]=1
+        result += list(set(line.split(' ')))
     inputs.close()
+    result = Counter(result)
+    for key,value in result.items():
+        print(key,math.log(count/(value+1)))
+
     outputs = open('./data/compute_idf.txt', 'w', encoding='utf-8')
     n=count
     print('number', n)
